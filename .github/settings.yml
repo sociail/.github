@@ -1,0 +1,90 @@
+# Repository Basic Settings
+repository:
+  has_wiki: true           # Enables Wiki for documenting project details and guides.
+  has_issues: true         # Enables Issue tracking to manage tasks and bugs.
+  has_projects: true       # Enables GitHub Projects for visual task management and workflow organization.
+  visibility: internal     # Sets repository visibility to internal within the organization to restrict access.
+  allow_forking: false     # Disables forking of the repository to control the distribution of the codebase.
+  license: all_rights_reserved  # Indicates that all rights are reserved; note this is for documentation, actual enforcement via README or LICENSE file.
+
+# Team Permissions
+# Define team roles to specify access levels within the repository.
+teams:
+  - name: DevOps Team
+    role: admin            # Grants administrative access to the DevOps team, allowing full control over repository settings and code management.
+
+# Branch Protection Rules
+# Configures protection settings for key branches to maintain code integrity and workflow control.
+branches:
+  # Development branch settings
+  - name: dev
+    protection:
+      enabled: true
+      required_status_checks:
+        strict: true       # Requires passing status checks before merging to ensure code stability.
+        contexts:
+          - ci/build       # CI build must pass.
+          - ci/test        # CI tests must pass.
+      enforce_admins: true # Applies these rules to administrators as well to enforce checks without exceptions.
+      required_pull_request_reviews:
+        required_approving_review_count: 1  # Requires one approval to promote thorough review practices.
+      allow_force_pushes: false            # Disables force pushes to protect branch history.
+      allow_deletions: false               # Disables branch deletion to protect important historical branches.
+
+  # Staging branch settings
+  - name: stag
+    protection:
+      enabled: true
+      required_status_checks:
+        strict: true
+        contexts:
+          - ci/build
+          - ci/test
+      enforce_admins: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+      allow_force_pushes: false
+      allow_deletions: false
+
+  # Production branch settings
+  - name: prod
+    protection:
+      enabled: true
+      required_status_checks:
+        strict: true
+        contexts:
+          - ci/build
+          - ci/test
+      enforce_admins: true
+      required_pull_request_reviews:
+        required_approving_review_count: 2  # Requires two approvals for an additional layer of scrutiny.
+        dismiss_stale_reviews: true         # Automatically dismisses stale reviews when new commits are pushed.
+        require_code_owner_reviews: true    # Requires review from code owners for critical areas of the codebase.
+      required_signatures:
+        enabled: true                      # Ensures all commits are signed for security verification.
+      required_linear_history:
+        enabled: true                      # Enforces a linear history to simplify tracking and reverting changes.
+      allow_force_pushes: false
+      allow_deletions: false
+      required_conversation_resolution:
+        enabled: true                      # Requires all conversation threads to be resolved before merging to ensure all concerns are addressed.
+
+# Merge Settings
+# Defines how merges are handled within the repository to ensure clean and understandable history.
+merge_settings:
+  allow_squash_merge: true    # Allows squash merging to combine all commits into a single commit upon merging for a clean history.
+  allow_merge_commit: false   # Disallows merge commits to prevent merge bubbles in history.
+  allow_rebase_merge: true    # Allows rebase merging to maintain a linear history.
+  delete_branch_on_merge: true # Automatically deletes the branch post-merge to keep the branch list clean and focused.
+
+# Security and Analysis Settings
+# Enables automated tools to help maintain code quality and security.
+security_and_analysis:
+  enable_dependabot_alerts: true       # Enables Dependabot alerts to automatically detect vulnerable dependencies.
+  enable_code_scanning_alerts: true    # Enables code scanning to detect potential security issues before they become a problem.
+
+# Additional Workflow Settings
+# Implements specific workflow preferences to guide developer actions.
+additional_settings:
+  force_pull_before_commit: true       # Enforces a workflow where the latest changes must be pulled before committing to reduce conflicts.
+  suggest_existing_branches: true      # Encourages the use of existing branches over creating new ones to reduce branch clutter and confusion.
