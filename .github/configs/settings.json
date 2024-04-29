@@ -2,21 +2,21 @@
   "required_status_checks": {
     "strict": true,
     "contexts": [
-      "ci/build",  // Ensure every PR must pass build tests
-      "ci/test"    // Ensure every PR must pass automated tests
+      "ci/build",
+      "ci/test"
     ]
   },
-  "enforce_admins": true,       // Admins must also follow the same rules, ensuring all changes are reviewed regardless of who makes them
+  "enforce_admins": true,
   "required_pull_request_reviews": {
-    "dismiss_stale_reviews": true,  // Dismiss approvals when new commits are pushed
-    "require_code_owner_reviews": false,  // Turn this off if not practical due to team size
-    "required_approving_review_count": 1  // Only one approval required to streamline the process
+    "dismiss_stale_reviews": true,
+    "require_code_owner_reviews": false,
+    "required_approving_review_count": 1
   },
-  "restrictions": null,          // No user or team restrictions, assuming a small team size where everyone might need to push
-  "allow_force_pushes": false,   // Still prevent force pushes to maintain history integrity
-  "allow_deletions": false,      // Prevent branch deletions
-  "required_linear_history": true, // Enforce a linear commit history to simplify understanding of changes
-  "block_creations": false,      // Allow creation of new branches freely
-  "required_conversation_resolution": true, // Ensure all discussion threads are resolved before merging
+  "restrictions": null,
+  "allow_force_pushes": false,
+  "allow_deletions": false,
+  "required_linear_history": true,
+  "block_creations": false,
+  "required_conversation_resolution": true,
   "protect_matched_branches": false
 }
