@@ -1,0 +1,21 @@
+name: Apply Repository Settings
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  apply-settings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Apply settings to repositories
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: "https://github.com/sociail/.github.git"
+          source_directory: ".github"
+          destination_directory: ".github"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
