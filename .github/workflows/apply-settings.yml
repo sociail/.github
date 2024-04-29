@@ -1,0 +1,31 @@
+name: Apply Repository Settings
+
+on:
+  # Triggers the workflow on push to the main branch in the .github repository
+  push:
+    branches:
+      - main
+  # Allows manual triggering of the workflow from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  apply-settings:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks out the .github repository where this workflow resides
+      - uses: actions/checkout@v3
+
+      # Apply settings to each repository
+      - name: Apply settings to repositories
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: "https://github.com/your-org/.github.git"
+          source_directory: ".github"
+          destination_directory: ".github"
+          # The token used must have admin access to all repositories
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Additional step to handle any repository-specific configurations or cleanup after settings are applied
+      - name: Additional configuration
+        run: echo "Additional configurations or cleanup tasks go here."
+
