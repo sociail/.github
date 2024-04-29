@@ -1,31 +1,54 @@
 name: Apply Repository Settings
 
 on:
-  # Triggers the workflow on push to the main branch in the .github repository
-  push:
-    branches:
-      - main
-  # Allows manual triggering of the workflow from GitHub UI
   workflow_dispatch:
+    inputs:
+      apply_to_all:
+        description: 'Apply to all repositories (yes/no)'
+        required: true
+        default: 'no'
 
 jobs:
   apply-settings:
     runs-on: ubuntu-latest
     steps:
-      # Checks out the .github repository where this workflow resides
       - uses: actions/checkout@v3
 
-      # Apply settings to each repository
+      # Custom script or action to apply settings to specified repositories
       - name: Apply settings to repositories
-        uses: repo-sync/github-sync@v2
-        with:
-          source_repo: "https://github.com/your-org/.github.git"
-          source_directory: ".github"
-          destination_directory: ".github"
-          # The token used must have admin access to all repositories
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPOS=(
+            # "sociail-chat-v2-server-clean"
+            # "sociail-chat-v2-client-clean"
+            # "sociail-chat-v2-admin-panel"
+            # "aiengine"
+            # "platform"
+            # "sociail-secrets-vault"
+            # "sociail-matrix-media"
+            # "sociail-localdev-setup"
+            # "sociail-identity-server"
+            # "sociail-connect"
+            # "sociail-connect-image"
+            # "sociail_ai_selection_bot"
+            # "sociail-ai-engine-v2"
+            # "sociail-website"
+            # "sociail-website-v2"
+            # "sociail-me"
+            # "sociail-redirection-service-matrix"
+            # "sociail-identity-server-clean"
+            # "sociail-frp"
+            # "social-socket-server-socketio"
+            # "sociail-admin-new"
+            # "matrix-synapse-element-demo"
+            # "sociail-ai"
+          )
 
-      # Additional step to handle any repository-specific configurations or cleanup after settings are applied
-      - name: Additional configuration
-        run: echo "Additional configurations or cleanup tasks go here."
-
+          for repo in ${REPOS[@]}; do
+            if [[ "${{ github.event.inputs.apply_to_all }}" == "yes" ]] || [[ " $repo " == *"$repo"* ]]; then
+              echo "Applying settings to $repo"
+              # Replace the following line with the actual command or script to apply settings
+              # Example: gh api -X PATCH repos/${{ github.repository_owner }}/$repo/branches/main/protection --input settings.json
+            fi
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
