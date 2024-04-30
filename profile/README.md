@@ -20,7 +20,7 @@ An innovative productivity platform that harnesses the power of AI to transform 
 `Develop the leading AI platform that empowers everyone to integrate AI into their lives.`
 
 ## What does it look like? 😍
-Sociail is a modern chat platform with a `Sociail AI Engine` at its core, delivering exceptional shared AI experiences collaboration.
+Sociail is a modern chat platform with a `Sociail AI Engine` at its core, delivering exceptional shared AI experiences.
 
 <img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
 
