@@ -1,6 +1,7 @@
-<img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95">
 
 # [Sociail](https://www.sociail.com) — Connect, Collaborate, Create with AI.
+
+<img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95">
 
 Welcome to Sociail Team's technology development hub on GitHub!
 
