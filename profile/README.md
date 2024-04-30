@@ -8,7 +8,7 @@ We invite you to check out our [pre-Public Beta release](https://www.sociail.com
 
 If you are new to our team, [start here](https://github.com/sociail/localdev/edit/dev/README.md) and also checkout our [Sociail Team Space on Notion](https://www.notion.so/sociail/).
 
-If you are insterested in joining Sociail Team, [let's connect](https://github.com/msualp).
+If you are insterested in joining the Sociail Team, [let's connect](https://github.com/msualp).
 
 ## **What is Sociail? 💬**
 An innovative productivity platform that harnesses the power of AI to transform how people collaborate, solve problems, and innovate together in real-time.
