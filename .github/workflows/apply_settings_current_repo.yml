@@ -10,7 +10,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          repository: .github
+          repository: sociail/.github
           token: ${{ secrets.MSUALP_TOKEN }}
 
       - name: Show Git config
