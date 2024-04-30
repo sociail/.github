@@ -10,7 +10,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          repository: sociail/.github
+          repository: .github
           token: ${{ secrets.MSUALP_TOKEN }}
 
       - name: Show Git config
@@ -18,9 +18,6 @@ jobs:
 
       - name: Fetch Upstream Repo
         run: |
-          echo "Adding tmp_upstream ${UPSTREAM_REPO}"
-          git remote add tmp_upstream $UPSTREAM_REPO
-          echo "Fetching tmp_upstream"
-          git -c http.extraheader="AUTHORIZATION: bearer ${{ secrets.MSUALP_TOKEN }}" fetch tmp_upstream
-        env:
-          UPSTREAM_REPO: https://github.com/sociail/.github.git
+          echo "Fetching upstream repo"
+          git fetch origin
+        working-directory: .github
