@@ -18,7 +18,7 @@ An innovative productivity platform that harnesses the power of AI to transform 
 ## What does Sociail look like? 😍
 <img width="600" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
 
-## What is the problem we are solving?
+## What is the problem?
 **Fragmentation and Limited AI Collaboration**
 
 - **Isolated Tools**: Many AI platforms and collaboration tools exist, but they often work in silos, offering only individual, isolated experiences.
@@ -34,7 +34,7 @@ An innovative productivity platform that harnesses the power of AI to transform 
 - **Accessible AI for Everyone**: We make advanced AI functionalities approachable for all users, bridging the gap between AI experts and novices, and enhancing everyday collaborations with intelligent insights.
 - **Dynamic, Community-Driven Environment**: Sociail is designed for many-to-many interactions, fostering a community where users can share, learn, and innovate together, leveraging both human and AI contributions.
 
-## What is our market opportunity?
+## What is the market opportunity?
 **Unlocking Opportunities in AI-Powered Collaboration**
 
 - **Rapid Market Expansion**: The demand for AI-enhanced collaboration tools is surging as more businesses adopt remote and hybrid work models.
