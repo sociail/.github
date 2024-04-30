@@ -4,7 +4,11 @@
 
 Welcome to Sociail Team's technology development hub on GitHub!
 
-If you are new to our team, [start here](https://github.com/sociail/localdev/edit/dev/README.md). You may also checkout our [Notion space](https://www.notion.so/sociail/).
+We invite you to check out our [pre-Public Beta release](https://www.sociail.com) for free.
+
+If you are new to our team, [start here](https://github.com/sociail/localdev/edit/dev/README.md) and also checkout our [Sociail Team Space on Notion](https://www.notion.so/sociail/).
+
+If you are insterested in joining Sociail Team, [let's connect](https://github.com/msualp).
 
 ## **What is Sociail? 💬**
 An innovative productivity platform that harnesses the power of AI to transform how people collaborate, solve problems, and innovate together in real-time.
@@ -20,5 +24,6 @@ Sociail is a modern chat platform with a `Sociail AI Engine` at its core, delive
 
 <img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
 
-© 2024 Sociail, Inc. All rights reserved.
+<hr>
+© 2024 Sociail, Inc. All rights reserved.<br>
 Unauthorized copying, modification, distribution, or use of this software is strictly prohibited.
