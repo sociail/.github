@@ -1,0 +1,104 @@
+name: Server and client settings action
+
+on:
+  push:
+    paths:
+      - 'server/k8s.dev.homeserver.yaml'
+      - 'server/k8s.stag.homeserver.yaml'
+      - 'server/k8s.prod.homeserver.yaml'
+      - 'client/k8s.dev.configmap.yaml'
+      - 'client/k8s.stag.configmap.yaml'
+      - 'client/k8s.prod.configmap.yaml'
+  workflow_dispatch:
+
+jobs:
+  dev_build:
+    runs-on: arc-runner-set
+    steps:
+      - name: Install Git
+        run: |                         
+          sudo apt-get update          
+          sudo apt-get install git -y  
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Ensures history is available for diff
+
+      - name: Check changed files
+        id: file_check
+        run: |
+          echo "FILES_CHANGED=$(git diff --name-only HEAD^ HEAD)" >> $GITHUB_ENV
+
+      - name: Set environment variables based on changed file
+        run: |
+          if echo "$FILES_CHANGED" | grep -q "server/k8s.dev.homeserver.yaml"; then
+            echo "ENVIRONMENT=dev" >> $GITHUB_ENV
+            echo "NAMESPACE=server-clean-dev" >> $GITHUB_ENV
+            echo "DEPLOYMENT=server-clean-dev" >> $GITHUB_ENV
+            echo "SETTINGS_NAME=server/k8s.dev.homeserver.yaml" >> $GITHUB_ENV
+          
+          elif echo "$FILES_CHANGED" | grep -q "server/k8s.stag.homeserver.yaml"; then
+            echo "ENVIRONMENT=stag" >> $GITHUB_ENV
+            echo "NAMESPACE=server-clean-stag" >> $GITHUB_ENV
+            echo "DEPLOYMENT=server-clean-stag" >> $GITHUB_ENV          
+            echo "SETTINGS_NAME=server/k8s.stag.homeserver.yaml" >> $GITHUB_ENV
+          
+          elif echo "$FILES_CHANGED" | grep -q "server/k8s.prod.homeserver.yaml"; then
+            echo "ENVIRONMENT=prod" >> $GITHUB_ENV
+            echo "NAMESPACE=server-clean-prod" >> $GITHUB_ENV
+            echo "DEPLOYMENT=server-clean-prod" >> $GITHUB_ENV          
+            echo "SETTINGS_NAME=server/k8s.prod.homeserver.yaml" >> $GITHUB_ENV
+          
+          elif echo "$FILES_CHANGED" | grep -q "client/k8s.dev.configmap.yaml"; then
+            echo "ENVIRONMENT=dev" >> $GITHUB_ENV
+            echo "NAMESPACE=client-clean-dev" >> $GITHUB_ENV
+            echo "DEPLOYMENT=client-clean-dev" >> $GITHUB_ENV          
+            echo "SETTINGS_NAME=client/k8s.dev.configmap.yaml" >> $GITHUB_ENV          
+          
+          elif echo "$FILES_CHANGED" | grep -q "client/k8s.stag.configmap.yaml"; then
+            echo "ENVIRONMENT=stag" >> $GITHUB_ENV
+            echo "NAMESPACE=client-clean-stag" >> $GITHUB_ENV
+            echo "DEPLOYMENT=client-clean-stag" >> $GITHUB_ENV          
+            echo "SETTINGS_NAME=client/k8s.stag.configmap.yaml" >> $GITHUB_ENV              
+          
+          elif echo "$FILES_CHANGED" | grep -q "client/k8s.prod.configmap.yaml"; then
+            echo "ENVIRONMENT=prod" >> $GITHUB_ENV
+            echo "NAMESPACE=client-clean-prod" >> $GITHUB_ENV
+            echo "DEPLOYMENT=client-clean-prod" >> $GITHUB_ENV          
+            echo "SETTINGS_NAME=client/k8s.prod.configmap.yaml" >> $GITHUB_ENV            
+          fi
+        env:
+          FILES_CHANGED: ${{ env.FILES_CHANGED }}
+
+      - name: Build image
+        run: |
+          if [[ -n "${ENVIRONMENT}" ]]; then
+            echo "The $ENVIRONMENT file has been changed."
+          else
+            echo "No relevant environment file change detected."
+          fi
+
+        env:
+          ENVIRONMENT: ${{ env.ENVIRONMENT }}
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Save DigitalOcean kubeconfig with short-lived credentials
+        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 sociail
+
+      - name: Install Kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Apply Kubernetes Configuration
+        run: kubectl apply -f ${{ env.SETTINGS_NAME }} -n ${{ env.NAMESPACE }}
+
+      - name: Restart Deployment
+        run: |
+          kubectl rollout restart deployment/${{ env.DEPLOYMENT }} -n ${{ env.NAMESPACE }}
+          echo "Deployment ${ENVIRONMENT} restarted."
+
+      - name: Verify deployment
+        run: kubectl rollout status deployment/${{ env.DEPLOYMENT }} -n ${{ env.NAMESPACE }}
