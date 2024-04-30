@@ -1,6 +1,11 @@
 name: Apply Repository Settings to Current Repo
 
 on:
+  # push:
+  #  branches:
+  #    - dev
+  #  paths:
+  #    - 'settings/settings.yml'  # Specify the path to the settings.yml file
   workflow_dispatch:
 
 jobs:
