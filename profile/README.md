@@ -56,6 +56,8 @@ _"Sharing is caring: it's the foundation of human socialization, learning, and c
 - **Unique Positioning**: Sociail combines AI, social networking, and professional collaboration features, uniquely addressing emerging needs in the market.
 - **Inclusive Approach**: Designed for both AI experts and novices, Sociail broadens its market appeal by making sophisticated AI collaboration accessible and engaging.
 
+<img width="400" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/930d3c15-80b1-4053-8f80-4810d15ac3f1">
+
 ## What is our Go-To-Market Strategy 🎯
 
 **GTM with freemium Public Beta offering on three tracks.**
@@ -74,9 +76,10 @@ _"Sharing is caring: it's the foundation of human socialization, learning, and c
     - Rationale: Catering to enterprise-specific needs will drive long-term revenue and growth.
 
 ## What are the key components? 🏗️ 
-`DRAFT` — updated diagrams coming soon!<BR>
+`DRAFT` Updated diagrams coming soon!<BR>
+<img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/8135fc41-de78-45f1-b6b4-aad23db315c2">
 
-<img width="600" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/123efea2-240f-48dd-a3b0-317b98ab7aaf">
+<img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/123efea2-240f-48dd-a3b0-317b98ab7aaf">
 
 © 2024 Sociail, Inc. All rights reserved.
 Unauthorized copying, modification, distribution, or use of this software is strictly prohibited.
