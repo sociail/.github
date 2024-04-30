@@ -1,11 +1,6 @@
 name: Apply Repository Settings to Current Repo
 
 on:
-  # push:
-  #  branches:
-  #    - dev
-  #  paths:
-  #    - 'settings/settings.yml'  # Specify the path to the settings.yml file
   workflow_dispatch:
 
 jobs:
@@ -13,14 +8,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+        with:
+          repository: sociail/.github
+          token: ${{ secrets.MSUALP_TOKEN }}
+
       - name: Configure Git Authentication
         run: |
           git config --global http.https://github.com/.extraheader "AUTHORIZATION: Basic $(echo -n ${GITHUB_ACTOR}:${{ secrets.MSUALP_TOKEN }} | base64 --wrap=0)"
 
+      - name: Show Git config
+        run: git config --global --list
 
-      - name: Apply settings to repositories
-        uses: repo-sync/github-sync@v2
-        with:
-          source_repo: "https://github.com/sociail/.github.git"
-          github_token: ${{ secrets.MSUALP_TOKEN }}
+      - name: Fetch Upstream Repo
+        run: |
+          echo "Adding tmp_upstream ${UPSTREAM_REPO}"
+          git remote add tmp_upstream $UPSTREAM_REPO
+          echo "Fetching tmp_upstream"
+          git fetch tmp_upstream
+        env:
+          UPSTREAM_REPO: https://github.com/sociail/.github.git
