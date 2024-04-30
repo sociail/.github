@@ -1,4 +1,4 @@
-name: Apply Repository Settings
+name: Apply Repository Settings to All Repos
 
 on:
   workflow_dispatch:
