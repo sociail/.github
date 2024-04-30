@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - 'settings/settings.yml'  # Specify the path to the settings.yml file
   workflow_dispatch:
 
 jobs:
@@ -19,4 +21,3 @@ jobs:
           source_directory: ".github"
           destination_directory: ".github"
           github_token: ${{ secrets.MSUALP_TOKEN }}  # Ensure this token has the necessary permissions
-
