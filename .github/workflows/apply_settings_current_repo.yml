@@ -7,7 +7,7 @@ jobs:
   apply-settings:
     runs-on: ubuntu-latest
     env:
-      HOME: ${{ runner.temp }}
+      HOME: ${{ runner.workspace }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
