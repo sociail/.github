@@ -13,12 +13,6 @@ jobs:
           repository: sociail/.github
           token: ${{ secrets.MSUALP_TOKEN }}
 
-      - name: Configure Git Authentication
-        run: |
-          git config --global http.https://github.com/.extraheader "AUTHORIZATION: Basic $(echo -n ${GITHUB_ACTOR}:${{ secrets.MSUALP_TOKEN }} | base64 --wrap=0)"
-        env:
-          GITHUB_ACTOR: ${{ github.actor }}
-
       - name: Show Git config
         run: git config --global --list
 
@@ -27,6 +21,6 @@ jobs:
           echo "Adding tmp_upstream ${UPSTREAM_REPO}"
           git remote add tmp_upstream $UPSTREAM_REPO
           echo "Fetching tmp_upstream"
-          git fetch tmp_upstream
+          git -c http.extraheader="AUTHORIZATION: bearer ${{ secrets.MSUALP_TOKEN }}" fetch tmp_upstream
         env:
           UPSTREAM_REPO: https://github.com/sociail/.github.git
