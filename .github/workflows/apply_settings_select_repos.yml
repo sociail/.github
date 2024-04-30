@@ -47,7 +47,6 @@ jobs:
           for repo in ${REPOS[@]}; do
             if [[ "${{ github.event.inputs.apply_to_selected_repos }}" == "yes" ]] || [[ " $repo " == *"$repo"* ]]; then
               echo "Applying settings to $repo"
-              # Replace the following line with the actual command or script to apply settings
               gh api -X PATCH repos/${{ github.repository_owner }}/$repo/branches/main/protection --input settings.json
             fi
           done
