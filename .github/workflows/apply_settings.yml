@@ -1,4 +1,4 @@
-name: Apply Repository Settings to Current
+name: Apply Repository Settings to Current Repo
 
 on:
   push:
