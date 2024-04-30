@@ -19,7 +19,7 @@ An innovative productivity platform that harnesses the power of AI to transform 
 ## What does it look like? 😍
 Sociail looks like a modern chat platform but with an AI Engine at its core delivering exceptional shared AI experiences and collaboration.
 
-<img width="600" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
+<img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
 
 
 ## What is the problem? 🌔
@@ -30,6 +30,9 @@ Sociail looks like a modern chat platform but with an AI Engine at its core deli
 - **Fast-Paced AI, Slow Adoption**: AI advances rapidly, outpacing the ability of many users to adapt, especially those without technical expertise, hindering widespread practical use.
 - **Demand for a Unified Platform**: Users seek a solution that integrates AI insights into their daily interactions and collaborations effortlessly and intuitively.
 
+<img width="400" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/3024a567-8883-4cf7-9215-490b48ab1fb5">
+<img width="400" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/478986f2-cde7-46aa-851e-b9e039bb35e1">
+
 ## What is our solution? 🚀
 **Sociail: Redefining AI-Powered Collaboration**
 
@@ -38,7 +41,12 @@ Sociail looks like a modern chat platform but with an AI Engine at its core deli
 - **Accessible AI for Everyone**: We make advanced AI functionalities approachable for all users, bridging the gap between AI experts and novices, and enhancing everyday collaborations with intelligent insights.
 - **Dynamic, Community-Driven Environment**: Sociail is designed for many-to-many interactions, fostering a community where users can share, learn, and innovate together, leveraging both human and AI contributions.
 
+<img width="400" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/2f6460e4-1a62-4e16-9666-f6599685ffb4">
+<img width="400" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/5f12d1c9-220b-4bd8-8ec8-221f88cfd417">
+
 _"Sharing is caring: it's the foundation of human socialization, learning, and collaboration. To achieve widespread adoption, AI must also be designed to be collaborative." - Mustafa Sualp, CEO, Sociail_
+
+
 
 ## What is the market opportunity? 🤩
 **Unlocking Opportunities in AI-Powered Collaboration**
@@ -66,7 +74,8 @@ _"Sharing is caring: it's the foundation of human socialization, learning, and c
     - Rationale: Catering to enterprise-specific needs will drive long-term revenue and growth.
 
 ## What are the key components? 🏗️ 
-`DRAFT` — updated diagram coming soon!<BR>
+`DRAFT` — updated diagrams coming soon!<BR>
+
 <img width="600" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/123efea2-240f-48dd-a3b0-317b98ab7aaf">
 
 © 2024 Sociail, Inc. All rights reserved.
