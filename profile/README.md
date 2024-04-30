@@ -16,6 +16,6 @@ An innovative productivity platform that harnesses the power of AI to transform 
 ## What does Sociail look like? 😍
 <img width="600" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
 
-## Sociail Platform Architecture 🏗️ `DRAFT`
+## What are the main components? 🏗️ `DRAFT`
 <img width="600" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/123efea2-240f-48dd-a3b0-317b98ab7aaf">
 
