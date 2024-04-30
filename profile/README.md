@@ -65,7 +65,9 @@ _"Sharing is caring: it's the foundation of human socialization, learning, and c
     - Tactics: Provide essential enterprise features such as end-to-end privacy, compliance tracking, and custom AI models.
     - Rationale: Catering to enterprise-specific needs will drive long-term revenue and growth.
 
-## What are the platform components? 🏗️ 
+## What are the key components? 🏗️ 
 `DRAFT` — updated diagram coming soon!<BR>
 <img width="600" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/123efea2-240f-48dd-a3b0-317b98ab7aaf">
 
+© 2024 Sociail, Inc. All rights reserved.
+Unauthorized copying, modification, distribution, or use of this software is strictly prohibited.
