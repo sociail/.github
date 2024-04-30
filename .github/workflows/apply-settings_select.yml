@@ -1,12 +1,12 @@
-name: Apply Repository Settings to All Repos
+name: Apply Repository Settings to Select Repos
 
 on:
   workflow_dispatch:
     inputs:
-      apply_to_all:
-        description: 'Apply to all repositories (yes/no)'
+      apply_to_selected_repos:
+        description: 'Apply to selected repositories (yes/no)'
         required: true
-        default: 'no'
+        default: 'yes'
 
 jobs:
   apply-settings:
@@ -45,10 +45,10 @@ jobs:
           )
 
           for repo in ${REPOS[@]}; do
-            if [[ "${{ github.event.inputs.apply_to_all }}" == "yes" ]] || [[ " $repo " == *"$repo"* ]]; then
+            if [[ "${{ github.event.inputs.apply_to_selected_repos }}" == "yes" ]] || [[ " $repo " == *"$repo"* ]]; then
               echo "Applying settings to $repo"
               # Replace the following line with the actual command or script to apply settings
-              # Example:gh api -X PATCH repos/${{ github.repository_owner }}/$repo/branches/main/protection --input settings.json
+              gh api -X PATCH repos/${{ github.repository_owner }}/$repo/branches/main/protection --input settings.json
             fi
           done
         env:
