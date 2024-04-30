@@ -15,7 +15,8 @@ jobs:
       - name: Apply settings to repositories
         uses: repo-sync/github-sync@v2
         with:
-          source_repo: "https://github.com/sociail/.github.git"
+          source_repo: "https://github.com/sociail/.github.git"  # Remove the token from the URL
           source_directory: ".github"
           destination_directory: ".github"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MSUALP_TOKEN }}  # Ensure this token has the necessary permissions
+
