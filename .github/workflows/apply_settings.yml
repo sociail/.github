@@ -1,4 +1,4 @@
-name: Apply Repository Settings to Current Repo
+name: Apply Repository Settings
 
 on:
   workflow_dispatch:
@@ -7,7 +7,8 @@ jobs:
   apply-settings:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
         with:
           repository: sociail/.github
           token: ${{ secrets.MSUALP_TOKEN }}
@@ -15,6 +16,8 @@ jobs:
       - name: Configure Git Authentication
         run: |
           git config --global http.https://github.com/.extraheader "AUTHORIZATION: Basic $(echo -n ${GITHUB_ACTOR}:${{ secrets.MSUALP_TOKEN }} | base64 --wrap=0)"
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
 
       - name: Show Git config
         run: git config --global --list
