@@ -1,0 +1,13 @@
+# Configuration for welcome bot
+
+# Message for a user's first ever pull request
+newPRWelcomeComment: >
+  Thanks for opening your first pull request here! Please make sure to follow the contribution guidelines.
+
+# Message for a user's first ever issue
+newIssueWelcomeComment: >
+  Thank you for submitting your first issue. We appreciate your input!
+
+# Message when a user merges their first pull request
+firstPRMergeComment: >
+  Congrats on merging your first pull request! We are delighted to have you contribute to this project. Keep coming back!
