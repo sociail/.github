@@ -1,3 +1,6 @@
+`Sociail Team Links` [`Tasks`](https://github.com/orgs/sociail/projects/2) [`Repos`](https://github.com/orgs/sociail/repositories) [`Docs`](https://github.com/sociail/docs) [`Localdev`](https://github.com/sociail/localdev) 
+<hr>
+
 # [Sociail](https://www.sociail.com) Connect, Collaborate, Create with AI.
 
 <img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95">
