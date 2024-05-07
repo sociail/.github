@@ -1,4 +1,4 @@
-`Sociail Team Links` [`Tasks`](https://github.com/orgs/sociail/projects/2) [`Repos`](https://github.com/orgs/sociail/repositories) [`Docs`](https://github.com/sociail/docs) [`Localdev`](https://github.com/sociail/localdev) 
+`Sociail Team Links` [`Tasks`](https://github.com/orgs/sociail/projects/2) [`Repos`](https://github.com/orgs/sociail/repositories) [`Localdev`](https://github.com/sociail/localdev) [`Docs`](https://github.com/sociail/docs)
 <hr>
 
 # [Sociail](https://www.sociail.com) Connect, Collaborate, Create with AI.
