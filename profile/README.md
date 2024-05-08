@@ -1,10 +1,12 @@
 `Sociail Team` [`Tasks ✅`](https://github.com/orgs/sociail/projects/2) [`Repos 🚀`](https://github.com/orgs/sociail/repositories) [`Localdev 🕹️`](https://github.com/sociail/localdev) [`Docs 🔭`](https://github.com/sociail/docs)
 <br>
 <br>
+<br>
 
 # [Sociail](https://www.sociail.com) Connect, Collaborate, Create with AI.
 
 <img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95">
+<br>
 <br>
 <br>
 
@@ -17,6 +19,7 @@ If you are new to our team, [start here](https://github.com/sociail/localdev). <
 If you are insterested in joining the Sociail Team [send us an email](mailto:github@sociail.com) and [let's connect](https://github.com/msualp).
 <br>
 <br>
+<br>
 
 ## **What is Sociail? 💬**
 An innovative productivity platform that harnesses the power of AI to transform how people collaborate, solve problems, and innovate together in real-time.
@@ -26,6 +29,7 @@ An innovative productivity platform that harnesses the power of AI to transform 
 
 #### **Our Mission 🏃‍♂️🏃🏻‍♀️🏃🏻**
 `Develop the leading AI platform that empowers everyone to integrate AI into their lives.`
+<br>
 <br>
 <br>
 
