@@ -8,7 +8,6 @@
 <img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95">
 <br>
 <br>
-<br>
 
 Welcome to Sociail Team's technology development hub on GitHub!
 
@@ -17,7 +16,6 @@ We invite you to check out our [pre-Public Beta release](https://www.sociail.com
 If you are new to our team, [start here](https://github.com/sociail/localdev). <!-- and also checkout our [Sociail Team Space on Notion](https://www.notion.so/sociail/).-->
 
 If you are insterested in joining the Sociail Team [send us an email](mailto:github@sociail.com) and [let's connect](https://github.com/msualp).
-<br>
 <br>
 <br>
 
@@ -29,7 +27,6 @@ An innovative productivity platform that harnesses the power of AI to transform 
 
 #### **Our Mission 🏃‍♂️🏃🏻‍♀️🏃🏻**
 `Develop the leading AI platform that empowers everyone to integrate AI into their lives.`
-<br>
 <br>
 <br>
 
