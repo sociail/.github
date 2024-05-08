@@ -1,4 +1,4 @@
-`Sociail Team` [`Tasks ✅`](https://github.com/orgs/sociail/projects/2) [`Repos 🚀`](https://github.com/orgs/sociail/repositories) [`Localdev 🕹️`](https://github.com/sociail/localdev/blob/dev/README.md) [`Onboarding 🙌`](https://github.com/sociail/localdev/wiki) [`Docs 🔭`](https://github.com/sociail/docs)
+`Sociail Team` [`Tasks ✅`](https://github.com/orgs/sociail/projects/2) [`Repos 🚀`](https://github.com/orgs/sociail/repositories) [`Localdev 🕹️`](https://github.com/sociail/localdev/blob/dev/README.md) [`Onboarding 🙌`](https://github.com/sociail/localdev/wiki) [`Docs 🔭`](https://github.com/sociail/docs/wiki)
 <br>
 <br>
 
@@ -12,7 +12,7 @@
 
 We invite you to check out our [pre-Public Beta release](https://www.sociail.com) for free. 🚀
 
-If you are **new** to our team, [start here](https://github.com/sociail/localdev). 🐣
+If you are **new** to our team, [start here](https://github.com/sociail/localdev/README.md). 🐣
 
 If you are insterested in joining the Sociail Team [send us an email](mailto:github@sociail.com) and [let's connect](https://github.com/msualp). 🙌
 <br>
