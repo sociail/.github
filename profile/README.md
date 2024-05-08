@@ -8,13 +8,13 @@
 <br>
 <br>
 
-Welcome to Sociail Team's technology development hub on GitHub!
+👋 Welcome to Sociail Team's technology development hub on GitHub!
 
-We invite you to check out our [pre-Public Beta release](https://www.sociail.com) for free.
+We invite you to check out our [pre-Public Beta release](https://www.sociail.com) for free. 🚀
 
-If you are new to our team, [start here](https://github.com/sociail/localdev). <!-- and also checkout our [Sociail Team Space on Notion](https://www.notion.so/sociail/).-->
+If you are **new** to our team, [start here](https://github.com/sociail/localdev). 🐣
 
-If you are insterested in joining the Sociail Team [send us an email](mailto:github@sociail.com) and [let's connect](https://github.com/msualp).
+If you are insterested in joining the Sociail Team [send us an email](mailto:github@sociail.com) and [let's connect](https://github.com/msualp). 🙌
 <br>
 <br>
 
