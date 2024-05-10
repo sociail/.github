@@ -1,4 +1,4 @@
-##### `Sociail Team` &nbsp;|&nbsp; [`Tasks ✅`](https://github.com/orgs/sociail/projects/2) &nbsp;|&nbsp; [`Repos 🚀`](https://github.com/orgs/sociail/repositories) &nbsp;|&nbsp; [`Localdev 🕹️`](https://github.com/sociail/localdev/blob/dev/README.md) &nbsp;|&nbsp; [`Onboarding 🙌`](https://github.com/sociail/localdev/wiki) &nbsp;|&nbsp; [`Docs 🔭`](https://github.com/sociail/docs/wiki)
+##### `Sociail Team` &nbsp;|&nbsp; [`Tasks ✅`](https://github.com/orgs/sociail/projects/2) &nbsp;|&nbsp; [`Repos 🚀`](https://github.com/orgs/sociail/repositories) &nbsp;|&nbsp; [`Docs 🔭`](https://github.com/sociail/docs/wiki) &nbsp;|&nbsp; [`Localdev 🕹️`](https://github.com/sociail/localdev/blob/dev/README.md) &nbsp;|&nbsp; [`Onboarding 🙌`](https://github.com/sociail/localdev/wiki)
 <br>
 <br>
 
