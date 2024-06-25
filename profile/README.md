@@ -31,7 +31,7 @@ An innovative productivity platform that harnesses the power of AI to transform 
 <br>
 
 ## What does the `Pre-Public Beta` look like? 😍
-Sociail, currently in `Pre-Public Beta` is a modern chat platform with a `Sociail AI Engine` at its core, delivering exceptional shared AI experiences.
+Sociail `Pre-Public Beta` already offers a cutting-edge human-to-human chat platform with integrated access to multiple AIs. Powered by the `Sociail AI Engine`, users can enjoy exceptional shared AI experiences, enhancing collaboration and communication. **Public Beta coming Fall 2024**.
 
 <img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
 <br>
