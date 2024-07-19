@@ -26,7 +26,7 @@ An innovative productivity platform that harnesses the power of AI to transform 
 `Reimagine everyday human collaboration through AI.`
 
 #### **Our Mission 🏃‍♂️🏃🏻‍♀️🏃🏻**
-`Develop the leading AI platform that empowers everyone to integrate AI into their lives.`
+`Develop the leading collaborative AI platform that empowers everyone to integrate AI into their lives.`
 <br>
 <br>
 
