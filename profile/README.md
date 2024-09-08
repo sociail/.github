@@ -11,7 +11,7 @@
 
 👋 Welcome to Sociail Team's technology development hub on GitHub!
 
-We invite you to check out our [pre-Public Beta release](https://www.sociail.com) for free. 🚀
+We invite you to check out our [limited pre-Public Beta release](https://www.sociail.com). 🚀
 
 If you are **new** to our team, [start here](https://github.com/sociail/localdev/blob/dev/README.md). 🐣
 
