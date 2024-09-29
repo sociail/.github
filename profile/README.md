@@ -1,6 +1,7 @@
-#### Sociail Team &nbsp;|&nbsp; [`✅ Tasks`](https://github.com/orgs/sociail/projects/2) &nbsp;|&nbsp; [`📦 Repos`](https://github.com/orgs/sociail/repositories) &nbsp;|&nbsp; [`📚 Wiki`](https://github.com/sociail/docs/wiki) &nbsp;|&nbsp; [`💻 Localdev`](https://github.com/sociail/localdev/blob/dev/README.md) &nbsp;|&nbsp; [`👋 Onboarding`](https://github.com/sociail/localdev/wiki)
+**Sociail Team** &nbsp;|&nbsp; <b>[`✅ Tasks`](https://github.com/orgs/sociail/projects/2)</b> &nbsp;|&nbsp; <b>[`📦 Repos`](https://github.com/orgs/sociail/repositories)</b> &nbsp;|&nbsp; <b>[`📚 Wiki`](https://github.com/sociail/docs/wiki)</b> &nbsp;|&nbsp; <b>[`💻 Localdev`](https://github.com/sociail/localdev/blob/dev/README.md)</b> &nbsp;|&nbsp; <b>[`👋 Onboarding`](https://github.com/sociail/docs/wiki/onboarding)</b>
 <br>
 <br>
+
 
 
 # [Sociail](https://www.sociail.com) Connect, Collaborate, Create with AI.
