@@ -90,6 +90,7 @@ Sociail `Pre-Public Beta` already offers a cutting-edge human-to-human chat plat
 <img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
 <br>
 <br>
+
 **Let's build the future of human and AI collaboration together! 💪✨**
 
 
