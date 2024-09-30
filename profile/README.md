@@ -6,7 +6,7 @@
 
 # [Sociail](https://www.sociail.com) Connect, Collaborate, Create with AI.
 
-<img width="100%" alt="Untitled" src="[https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95](https://github.com/user-attachments/assets/345305e8-cdf8-4768-8ba7-fc7b6f200813)">
+<img width="100%" alt="Untitled" src="[https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95](https://github.com/user-attachments/assets/345305e8-cdf8-4768-8ba7-fc7b6f200813">
 <br>
 <br>
 
