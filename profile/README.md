@@ -14,7 +14,7 @@
 
 We invite you to check out our [limited pre-Public Beta release](https://www.sociail.com). 🚀
 
-If you are **new** to our team, [start here](https://github.com/sociail/localdev/blob/dev/README.md). 🐣
+If you are **new** to our team, [start here](https://github.com/sociail/docs/wiki/onboarding). 🐣
 
 If you are interested in joining the Sociail Team, please [send us an email](mailto:github@sociail.com). 🙌
 <br>
