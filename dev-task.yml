@@ -1,0 +1,79 @@
+name: Dev Task
+about: Template for creating new development tasks
+title: "[Dev Task] "
+labels: task
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Task Summary
+        <!-- Provide a brief, clear description of what needs to be done -->
+
+  - type: textarea
+    id: task-summary
+    attributes:
+      label: Task Summary
+      placeholder: Briefly describe the task...
+
+  - type: markdown
+    attributes:
+      value: |
+        ## DevPlan
+        <!-- List the steps needed to complete this task -->
+
+  - type: textarea
+    id: devplan
+    attributes:
+      label: DevPlan
+      value: |
+        - [ ] Step 1
+        - [ ] Step 2
+        - [ ] Step 3
+        <!-- Add more steps as needed -->
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Key Considerations
+        <!-- List any important technical notes, potential challenges, or dependencies -->
+
+  - type: textarea
+    id: key-considerations
+    attributes:
+      label: Key Considerations
+      placeholder: List key considerations...
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Visual References
+        <!-- Attach or link to any relevant screenshots, mockups, or diagrams -->
+
+  - type: textarea
+    id: visual-references
+    attributes:
+      label: Visual References
+      placeholder: Attach or link visual references...
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Task Readiness Checklist
+
+  - type: checkboxes
+    id: task-readiness
+    attributes:
+      label: Task Readiness Checklist
+      options:
+        - label: DevPlan is clear and actionable
+        - label: Effort estimate is realistic
+        - label: Dependencies or blockers identified
+        - label: Aligns with sprint/release goals
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      placeholder: Add any other relevant information...
