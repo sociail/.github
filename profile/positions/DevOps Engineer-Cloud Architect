@@ -1,0 +1,71 @@
+# **Job Description: DevOps Engineer/Cloud Architect**
+
+**Company:** Sociail  
+**Location:** Remote / Hybrid  
+**Type:** Full-Time  
+
+---
+
+## **About Sociail**
+Sociail is an innovative AI startup on a mission to reimagine collaboration through AI. We’re building a cutting-edge platform that integrates multiple AI systems into a dynamic, real-time collaborative environment. As we prepare for beta and public launch, we’re looking for a skilled **DevOps Engineer/Cloud Architect** to ensure our infrastructure is reliable, scalable, and secure.
+
+---
+
+## **What You’ll Do**
+As a DevOps Engineer/Cloud Architect at Sociail, you will:
+
+- **Design Infrastructure:** Architect, implement, and manage cloud-based infrastructure to support scalable, high-performance applications.
+- **Build CI/CD Pipelines:** Develop and maintain robust CI/CD pipelines for automated testing, integration, and deployment.
+- **Ensure Reliability:** Monitor and enhance system uptime, latency, and reliability with modern tools and practices.
+- **Automate Everything:** Implement infrastructure as code (IaC) using tools like Terraform or CloudFormation.
+- **Optimize Performance:** Analyze system performance and implement improvements for resource efficiency and cost optimization.
+- **Enhance Security:** Ensure compliance with best practices for securing cloud environments, data storage, and application pipelines.
+- **Collaborate:** Work with the engineering team to align DevOps strategies with development goals and product milestones.
+
+---
+
+## **What We’re Looking For**
+
+- **5+ years of experience** in DevOps, cloud architecture, or related roles.
+- **Cloud Expertise:** Deep knowledge of cloud platforms (AWS, GCP, or Azure) and services (e.g., EC2, Kubernetes, Lambda, S3, BigQuery).
+- **Automation Skills:** Strong experience with infrastructure-as-code tools (Terraform, CloudFormation) and configuration management tools (Ansible, Chef, or Puppet).
+- **CI/CD Mastery:** Expertise with CI/CD tools like Jenkins, GitHub Actions, CircleCI, or GitLab CI.
+- **Containerization:** Proficiency in container technologies (Docker) and orchestration platforms (Kubernetes, ECS).
+- **Monitoring & Logging:** Experience with tools like Prometheus, Grafana, Datadog, or ELK Stack for system monitoring and observability.
+- **Security Focus:** Familiarity with security best practices for cloud architecture, DevSecOps principles, and compliance standards.
+- **Problem-Solver:** Ability to troubleshoot complex system issues and implement solutions in high-pressure environments.
+
+---
+
+## **Nice-to-Haves**
+
+- Experience with **serverless architectures** and event-driven design.
+- Knowledge of **real-time systems** and high-performance application deployment.
+- Background in supporting AI/ML pipelines or large-scale data processing systems.
+- Certification in cloud platforms (e.g., AWS Solutions Architect, Google Cloud Professional Engineer).
+
+---
+
+## **Why Join Us?**
+
+- **Impact:** Play a vital role in ensuring the stability and scalability of a groundbreaking collaborative AI platform.
+- **Growth:** Contribute to infrastructure decisions at a foundational level, with opportunities for leadership.
+- **Culture:** Work in a mission-driven environment with a small, collaborative team focused on innovation and creativity.
+- **Flexibility:** Remote-friendly work policies with a focus on results, not hours.
+
+---
+
+## **Compensation**
+
+- Competitive salary and equity options.
+- Health and wellness benefits.
+- Flexible work arrangements.
+
+---
+
+## **How to Apply**
+
+Send your resume and a brief introduction to **[Insert Email]** with the subject line:  
+**DevOps Engineer/Cloud Architect Application – [Your Name]**
+
+Let’s reimagine collaboration together. 🚀
