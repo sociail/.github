@@ -10,15 +10,11 @@
 <br>
 <br>
 
-👋 Welcome to Sociail Team's technology development hub on GitHub!
+## 👋 Welcome to Sociail Team's technology development hub on GitHub!
 
-We invite you to check out our [limited pre-Public Beta release](https://www.sociail.com). 🚀
-
-If you are **new** to our team, [start here](https://github.com/sociail/docs/wiki/onboarding). 🐣
-
-If you are interested in joining the Sociail Team, please [send us an email](mailto:github@sociail.com). 🙌
-<br>
-<br>
+> We invite you to check out our [limited pre-Public Beta release](https://www.sociail.com). 🚀<br>
+> If you are **new** to our team, please [start here](https://github.com/sociail/docs/wiki/onboarding). 🐣<br>
+> If you are interested in joining the Sociail Team, please email jobs@sociail.com. 🙌<br>
 
 # Sociail: Reimagining human collaboration through AI
 
