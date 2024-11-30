@@ -16,8 +16,6 @@
 > If you are **new** to our team, please [start here](https://github.com/sociail/docs/wiki/onboarding). 🐣<br>
 > If you are interested in joining the Sociail Team, please email jobs@sociail.com. 🙌<br>
 
-# Sociail: Reimagining human collaboration through AI
-
 ## Join Our Team  
 
 We’re looking for passionate developers to help us bring this vision to life. If you’re skilled in AI systems, backend development, or open-source technologies like Matrix, we’d love to hear from you!  
@@ -40,7 +38,9 @@ If one of these roles excites you, reach out to us at **jobs@sociail.com** to ap
 - **Sociail Code Works**: We aim to build a culture of excellence where collaboration leads to strong, successful deliverables. At Sociail, every project is an opportunity to raise the bar and deliver exceptional results through teamwork and a shared commitment to quality.  
 - **AI-Enhanced Innovation**: AI is at the heart of everything we do. We use AI to accelerate deliverables, enhance skill development, and solve complex problems. By integrating AI into our workflows, we empower our team to innovate faster, work smarter, and achieve ambitious goals.  
 
-## Who is Sociail?  
+## Who is Sociail?
+
+### We are reimagining human collaboration through AI
 
 Sociail is a **startup focused on building a collaborative AI platform**. Our vision is to create a space where humans and AI collaborate seamlessly to achieve extraordinary outcomes.
 
