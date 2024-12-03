@@ -23,7 +23,7 @@ We’re looking for passionate developers to help us bring this vision to life. 
 **Open Positions**
 Check out our current opportunities:
  - [Senior Frontend Engineer (React/TypeScript)](https://github.com/sociail/.github/wiki/Job-Description:-Senior-Frontend-Engineer-(React-TypeScript)) 
- - [Senior Backend Engineer (Node.js/Python/Go)](https://github.com/sociail/.github/wiki/Job-Description:-Senior-Backend-Engineer-(Python-Go))  
+ - [Senior Backend Engineer (Python/Go)](https://github.com/sociail/.github/wiki/Job-Description:-Senior-Backend-Engineer-(Python-Go))  
  - [DevOps Engineer/Cloud Architect](https://github.com/sociail/.github/wiki/Job-Description:-DevOps-Engineer-Cloud-Architect)  
  - [AI/ML Engineer](https://github.com/sociail/.github/wiki/Job-Description:-AI-ML-Engineer)  
 
