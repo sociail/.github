@@ -1,0 +1,139 @@
+name: Set Project Field Defaults
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  set_project_defaults:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      repository-projects: write
+    steps:
+      - name: Set Project Fields
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+          script: |
+            // Configuration Section
+            const PROJECT_ID = "PVT_kwDOB9_E084Atwtw"; // Your Project ID
+
+            // Default field mappings (comment/uncomment fields for tuning)
+            const FIELD_MAPPINGS = {
+              // 'Field ID': 'Option ID or Value'
+              'PVTSSF_lADOB9_E084AekZHzgUKKNw': 'f75ad846',  // Status → "Todo (Backlog)"
+              'PVTSSF_lADOB9_E084AekZHzgUKKQ8': '21e3e565',  // 🚦 Dev Priority → "🟩 P2"
+              'PVTSSF_lADOB9_E084AekZHzgggjMo': '58ac88e0',  // 👨🏼‍💻 PROGRESS → "🥚 25%"
+              'PVTSSF_lADOB9_E084AekZHzgUjVQs': 'a6d2a778',  // 🏷️ Category → "🌟 New"
+              'PVTF_lADOB9_E084AekZHzgforTI': 0,             // EST HRS → 0
+              'PVTF_lADOB9_E084AekZHzgfrfQ4': 'today',       // START DATE → Today
+              'PVTF_lADOB9_E084AekZHzgUKKRQ': '2-weeks',     // TARGET DATE → 2 weeks from today
+            };
+
+            // Helper Functions
+            const executeMutation = async (mutation, variables) => {
+              try {
+                const result = await github.graphql(mutation, variables);
+                console.log(`Mutation success: ${JSON.stringify(variables)}`);
+                return result;
+              } catch (error) {
+                console.error(`Mutation failed: ${JSON.stringify(variables)} - ${error.message}`);
+              }
+            };
+
+            const addItemToProject = async (projectId, itemId) => {
+              const mutation = `
+                mutation($projectId: ID!, $itemId: ID!) {
+                  addProjectV2ItemById(input: {projectId: $projectId, contentId: $itemId}) {
+                    item { id }
+                  }
+                }
+              `;
+              const variables = { projectId, itemId };
+              const result = await executeMutation(mutation, variables);
+              return result?.addProjectV2ItemById?.item?.id;
+            };
+
+            const updateField = async (projectId, itemId, fieldId, value) => {
+              let mutation, variables;
+              if (typeof value === 'string' && value.match(/^[a-z0-9]+$/i)) {
+                // Single Select Field
+                mutation = `
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                    updateProjectV2ItemFieldValue(
+                      input: {
+                        projectId: $projectId,
+                        itemId: $itemId,
+                        fieldId: $fieldId,
+                        value: { singleSelectOptionId: $optionId }
+                      }
+                    ) { clientMutationId }
+                  }
+                `;
+                variables = { projectId, itemId, fieldId, optionId: value };
+              } else if (typeof value === 'number') {
+                // Number Field
+                mutation = `
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Float!) {
+                    updateProjectV2ItemFieldValue(
+                      input: {
+                        projectId: $projectId,
+                        itemId: $itemId,
+                        fieldId: $fieldId,
+                        value: { number: $value }
+                      }
+                    ) { clientMutationId }
+                  }
+                `;
+                variables = { projectId, itemId, fieldId, value };
+              } else if (value === 'today' || value === '2-weeks') {
+                // Date Field
+                const date = new Date();
+                if (value === '2-weeks') date.setDate(date.getDate() + 14);
+                const formattedDate = date.toISOString().split('T')[0];
+                mutation = `
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Date!) {
+                    updateProjectV2ItemFieldValue(
+                      input: {
+                        projectId: $projectId,
+                        itemId: $itemId,
+                        fieldId: $fieldId,
+                        value: { date: $value }
+                      }
+                    ) { clientMutationId }
+                  }
+                `;
+                variables = { projectId, itemId, fieldId, value: formattedDate };
+              } else {
+                console.warn(`Skipping unsupported field type for fieldId: ${fieldId}, value: ${value}`);
+                return;
+              }
+
+              await executeMutation(mutation, variables);
+            };
+
+            // Main Script Execution
+            const itemId = context.payload.issue
+              ? context.payload.issue.node_id
+              : context.payload.pull_request.node_id;
+
+            if (!itemId) {
+              console.error('No item ID found in payload.');
+              return;
+            }
+
+            console.log(`Adding item to project: ${PROJECT_ID}`);
+            const itemNodeId = await addItemToProject(PROJECT_ID, itemId);
+
+            if (!itemNodeId) {
+              console.error('Failed to add item to project.');
+              return;
+            }
+
+            console.log(`Item added with Node ID: ${itemNodeId}`);
+            for (const [fieldId, value] of Object.entries(FIELD_MAPPINGS)) {
+              await updateField(PROJECT_ID, itemNodeId, fieldId, value);
+            }
