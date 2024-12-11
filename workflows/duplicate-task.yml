@@ -1,53 +1,225 @@
-name: Duplicate Dev Task
-
+name: Handle Duplicate Command
 on:
   issue_comment:
     types: [created]
 
 jobs:
-  duplicate-task:
-    if: ${{ github.event.comment.body == '/duplicate' }}
+  duplicate_item:
+    if: contains(github.event.comment.body, '/duplicate')
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      repository-projects: write
+    env:
+      PROJECT_ID: "PVT_kwDOB9_E084Atwtw"
     steps:
-      - name: Duplicate Issue
-        uses: actions/github-script@v6
+      - name: Handle Duplicate Command
+        uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.PROJECT_TOKEN }}
           script: |
-            const issue = context.payload.issue;
+            const projectId = process.env.PROJECT_ID; // Fetch project ID from environment
+            const sourceItemId = context.payload.issue ? context.payload.issue.node_id : context.payload.pull_request.node_id;
 
-            // Create a new issue as a duplicate
-            const { data: newIssue } = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `[Duplicate] ${issue.title}`,
-              body: issue.body,
-              labels: issue.labels.map(label => label.name),
-              assignees: issue.assignees.map(assignee => assignee.login),
+            if (!projectId) {
+              console.error("❌ PROJECT_ID environment variable is not set.");
+              return;
+            }
+
+            // Validate source item exists
+            const validateQuery = `
+              query($projectId: ID!, $itemId: ID!) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    item(contentId: $itemId) {
+                      id
+                    }
+                  }
+                }
+              }
+            `;
+            const validationResult = await github.graphql(validateQuery, {
+              projectId,
+              itemId: sourceItemId
             });
 
-            // Log the new issue URL
-            console.log(`Created new issue: ${newIssue.html_url}`);
+            if (!validationResult.node.item) {
+              console.error(`❌ Source item ${sourceItemId} not found in project ${projectId}.`);
+              return;
+            }
 
-            // Add the duplicate issue to the Dev project
-            const projectId = "YOUR_DEV_PROJECT_ID"; // Replace with the Dev project ID
-            const contentId = newIssue.node_id;
+            // Create duplicate issue
+            const title = (context.payload.issue ? context.payload.issue.title : context.payload.pull_request.title) + " (Copy)";
+            const body = context.payload.issue ? context.payload.issue.body : context.payload.pull_request.body;
+            const newIssue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body
+            });
 
-            await github.graphql(`
-              mutation ($projectId: ID!, $contentId: ID!) {
-                addProjectV2ItemById(input: { projectId: $projectId, contentId: $contentId }) {
+            const newItemId = newIssue.data.node_id;
+
+            // Add duplicate to project
+            const addToProjectMutation = `
+              mutation($projectId: ID!, $itemId: ID!) {
+                addProjectV2ItemById(input: {projectId: $projectId, contentId: $itemId}) {
                   item {
                     id
                   }
                 }
               }
-            `, {
+            `;
+            const addResult = await github.graphql(addToProjectMutation, {
               projectId,
-              contentId,
+              itemId: newItemId
+            });
+            const newProjectItemId = addResult.addProjectV2ItemById.item.id;
+
+            // Fetch source item's field values
+            const getItemQuery = `
+              query($projectId: ID!, $itemId: ID!) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    item(contentId: $itemId) {
+                      fieldValues(first: 100) {
+                        nodes {
+                          __typename
+                          field { id }
+                          ... on ProjectV2ItemFieldSingleSelectValue {
+                            optionId
+                          }
+                          ... on ProjectV2ItemFieldNumberValue {
+                            number
+                          }
+                          ... on ProjectV2ItemFieldDateValue {
+                            date
+                          }
+                          ... on ProjectV2ItemFieldIterationValue {
+                            iterationId
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+            const sourceItem = await github.graphql(getItemQuery, {
+              projectId,
+              itemId: sourceItemId
             });
 
-            console.log(`Added new issue to Dev project: ${projectId}`);
+            const fieldValues = sourceItem.node.item.fieldValues.nodes;
+            const unsupportedFields = [];
 
-// fieldValues: [
-//  { fieldId: "statusFieldId", value: "To Do" },
-//  { fieldId: "priorityFieldId", value: "Medium" },
-// ]
+            // Update field values in duplicate item
+            for (const fieldValue of fieldValues) {
+              try {
+                const { __typename, field } = fieldValue;
+
+                if (__typename === "ProjectV2ItemFieldSingleSelectValue" && fieldValue.optionId) {
+                  // Single Select field
+                  await github.graphql(`
+                    mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                      updateProjectV2ItemFieldValue(
+                        input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: { singleSelectOptionId: $optionId }
+                        }
+                      ) {
+                        clientMutationId
+                      }
+                    }
+                  `, {
+                    projectId,
+                    itemId: newProjectItemId,
+                    fieldId: field.id,
+                    optionId: fieldValue.optionId
+                  });
+                } else if (__typename === "ProjectV2ItemFieldNumberValue" && fieldValue.number !== undefined) {
+                  // Number field
+                  await github.graphql(`
+                    mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Float!) {
+                      updateProjectV2ItemFieldValue(
+                        input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: { number: $value }
+                        }
+                      ) {
+                        clientMutationId
+                      }
+                    }
+                  `, {
+                    projectId,
+                    itemId: newProjectItemId,
+                    fieldId: field.id,
+                    value: fieldValue.number
+                  });
+                } else if (__typename === "ProjectV2ItemFieldDateValue" && fieldValue.date) {
+                  // Date field
+                  await github.graphql(`
+                    mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Date!) {
+                      updateProjectV2ItemFieldValue(
+                        input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: { date: $value }
+                        }
+                      ) {
+                        clientMutationId
+                      }
+                    }
+                  `, {
+                    projectId,
+                    itemId: newProjectItemId,
+                    fieldId: field.id,
+                    value: fieldValue.date
+                  });
+                } else if (__typename === "ProjectV2ItemFieldIterationValue" && fieldValue.iterationId) {
+                  // Iteration field
+                  await github.graphql(`
+                    mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $iterationId: String!) {
+                      updateProjectV2ItemFieldValue(
+                        input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: { iterationId: $iterationId }
+                        }
+                      ) {
+                        clientMutationId
+                      }
+                    }
+                  `, {
+                    projectId,
+                    itemId: newProjectItemId,
+                    fieldId: field.id,
+                    iterationId: fieldValue.iterationId
+                  });
+                } else {
+                  unsupportedFields.push({ field, value: fieldValue });
+                }
+              } catch (error) {
+                console.error(`❌ Error updating field ${fieldValue.field.id}: ${error.message}`);
+              }
+            }
+
+            if (unsupportedFields.length > 0) {
+              console.warn(`⚠️ Unsupported fields detected:`, unsupportedFields);
+            }
+
+            // Add comment confirming duplication with hyperlink
+            const duplicateLink = `#${newIssue.data.number}`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `✅ Created duplicate issue: [${duplicateLink}](${newIssue.data.html_url})`
+            });
