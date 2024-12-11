@@ -1,0 +1,53 @@
+name: Duplicate Dev Task
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  duplicate-task:
+    if: ${{ github.event.comment.body == '/duplicate' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Duplicate Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = context.payload.issue;
+
+            // Create a new issue as a duplicate
+            const { data: newIssue } = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[Duplicate] ${issue.title}`,
+              body: issue.body,
+              labels: issue.labels.map(label => label.name),
+              assignees: issue.assignees.map(assignee => assignee.login),
+            });
+
+            // Log the new issue URL
+            console.log(`Created new issue: ${newIssue.html_url}`);
+
+            // Add the duplicate issue to the Dev project
+            const projectId = "YOUR_DEV_PROJECT_ID"; // Replace with the Dev project ID
+            const contentId = newIssue.node_id;
+
+            await github.graphql(`
+              mutation ($projectId: ID!, $contentId: ID!) {
+                addProjectV2ItemById(input: { projectId: $projectId, contentId: $contentId }) {
+                  item {
+                    id
+                  }
+                }
+              }
+            `, {
+              projectId,
+              contentId,
+            });
+
+            console.log(`Added new issue to Dev project: ${projectId}`);
+
+// fieldValues: [
+//  { fieldId: "statusFieldId", value: "To Do" },
+//  { fieldId: "priorityFieldId", value: "Medium" },
+// ]
