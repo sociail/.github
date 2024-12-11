@@ -26,11 +26,11 @@ jobs:
               // 'Field ID': 'Option ID or Value'
               'PVTSSF_lADOB9_E084AekZHzgUKKNw': 'f75ad846',  // Status → "Todo (Backlog)"
               'PVTSSF_lADOB9_E084AekZHzgUKKQ8': '21e3e565',  // 🚦 Dev Priority → "🟩 P2"
-              'PVTSSF_lADOB9_E084AekZHzgggjMo': '58ac88e0',  // 👨🏼‍💻 PROGRESS → "🥚 25%"
-              'PVTSSF_lADOB9_E084AekZHzgUjVQs': 'a6d2a778',  // 🏷️ Category → "🌟 New"
+              // 'PVTSSF_lADOB9_E084AekZHzgggjMo': '58ac88e0',  // 👨🏼‍💻 PROGRESS → "🥚 25%"
+              // 'PVTSSF_lADOB9_E084AekZHzgUjVQs': 'a6d2a778',  // 🏷️ Category → "🌟 New"
               'PVTF_lADOB9_E084AekZHzgforTI': 0,             // EST HRS → 0
               'PVTF_lADOB9_E084AekZHzgfrfQ4': 'today',       // START DATE → Today
-              'PVTF_lADOB9_E084AekZHzgUKKRQ': '2-weeks',     // TARGET DATE → 2 weeks from today
+              'PVTF_lADOB9_E084AekZHzgUKKRQ': '1-week',     // TARGET DATE → 1 week from today
             };
 
             // Helper Functions
