@@ -16,7 +16,9 @@ on:
         required: true
         type: number
     secrets:
-      PROJECT_PAT:
+      PROJECT_TOKEN:
+        required: true
+      PROJECT_ID:
         required: true
 
 jobs:
