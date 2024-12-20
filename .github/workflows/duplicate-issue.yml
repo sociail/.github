@@ -24,6 +24,7 @@ jobs:
     permissions:
       issues: write
       contents: read
+      projects: write
     
     steps:
       - name: Check comment author permissions
