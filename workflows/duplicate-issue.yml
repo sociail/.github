@@ -1,0 +1,166 @@
+name: Reusable Issue Duplication Workflow
+
+# This workflow is meant to be stored in .github repository
+# Path: .github/workflows/duplicate-issue.yml
+
+on:
+  workflow_call:
+    inputs:
+      issue_number:
+        required: true
+        type: number
+      repository:
+        required: true
+        type: string
+      comment_id:
+        required: true
+        type: number
+    secrets:
+      PROJECT_PAT:
+        required: true
+
+jobs:
+  duplicate-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    
+    steps:
+      - name: Check comment author permissions
+        id: check_permissions
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROJECT_PAT }}
+          script: |
+            const [owner, repo] = context.payload.repository.split('/');
+            const { data: permissions } = await github.rest.repos.getCollaboratorPermissionLevel({
+              owner: owner,
+              repo: repo,
+              username: context.actor
+            }).catch(e => ({ data: { permission: 'none' } }));
+            
+            const allowed = ['admin', 'write', 'maintain'].includes(permissions.permission);
+            console.log(`User ${context.actor} has permission: ${permissions.permission}`);
+            return allowed;
+
+      - name: Create duplicate issue
+        if: steps.check_permissions.outputs.result == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROJECT_PAT }}
+          script: |
+            const [owner, repo] = context.payload.repository.split('/');
+            
+            // Fetch original issue details
+            const { data: originalIssue } = await github.rest.issues.get({
+              owner: owner,
+              repo: repo,
+              issue_number: context.payload.issue_number
+            });
+
+            // Get project information using GraphQL
+            const getProjectsQuery = `
+              query($owner: String!, $repo: String!, $issueNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $issueNumber) {
+                    projectItems(first: 20) {
+                      nodes {
+                        project {
+                          id
+                          number
+                          title
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const projectData = await github.graphql(getProjectsQuery, {
+              owner: owner,
+              repo: repo,
+              issueNumber: context.payload.issue_number
+            });
+
+            const timestamp = new Date().toISOString();
+            const newBody = `🔄 *This is a duplicate of #${originalIssue.number}*
+            
+            ## Original Issue Content
+            ${originalIssue.body || ''}
+            
+            ## Additional Information
+            - Original Issue: #${originalIssue.number}
+            - Duplicated by: @${context.actor}
+            - Duplicated on: ${timestamp}
+            
+            ---
+            *Note: This is an automated duplicate. Please refer to the original issue for complete context.*`;
+            
+            // Create duplicate issue
+            const newIssue = await github.rest.issues.create({
+              owner: owner,
+              repo: repo,
+              title: `[Duplicate] ${originalIssue.title}`,
+              body: newBody,
+              labels: originalIssue.labels.map(label => label.name),
+              assignees: originalIssue.assignees.map(assignee => assignee.login)
+            });
+
+            // Add to projects if any
+            const projects = projectData.repository.issue.projectItems.nodes;
+            if (projects.length > 0) {
+              const addToProjectMutation = `
+                mutation($projectId: ID!, $contentId: ID!) {
+                  addProjectV2ItemById(input: {projectId: $projectId, contentId: $contentId}) {
+                    item {
+                      id
+                    }
+                  }
+                }
+              `;
+
+              for (const projectItem of projects) {
+                try {
+                  await github.graphql(addToProjectMutation, {
+                    projectId: projectItem.project.id,
+                    contentId: newIssue.data.node_id
+                  });
+                  console.log(`Added to project: ${projectItem.project.title}`);
+                } catch (error) {
+                  console.error(`Failed to add to project ${projectItem.project.title}:`, error);
+                }
+              }
+            }
+            
+            // Add reference comments
+            await github.rest.issues.createComment({
+              owner: owner,
+              repo: repo,
+              issue_number: originalIssue.number,
+              body: `✅ Issue duplicated to #${newIssue.data.number} by @${context.actor}
+              ${projects.length > 0 ? `\nProjects copied: ${projects.map(p => p.project.title).join(', ')}` : ''}`
+            });
+            
+            await github.rest.issues.createComment({
+              owner: owner,
+              repo: repo,
+              issue_number: newIssue.data.number,
+              body: `This issue was created via \`/duplicate\` command by @${context.actor}
+              ${projects.length > 0 ? `\nAdded to projects: ${projects.map(p => p.project.title).join(', ')}` : ''}`
+            });
+
+      - name: Comment if user lacks permission
+        if: steps.check_permissions.outputs.result != 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROJECT_PAT }}
+          script: |
+            const [owner, repo] = context.payload.repository.split('/');
+            await github.rest.issues.createComment({
+              owner: owner,
+              repo: repo,
+              issue_number: context.payload.issue_number,
+              body: `⚠️ @${context.actor} - You don't have permission to duplicate issues. Please contact a repository maintainer.`
+            });
