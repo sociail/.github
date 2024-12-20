@@ -58,31 +58,6 @@ jobs:
               issue_number: ${{ inputs.issue_number }}
             });
 
-            // Get project information using GraphQL
-            const getProjectsQuery = `
-              query($owner: String!, $repo: String!, $issueNumber: Int!) {
-                repository(owner: $owner, name: $repo) {
-                  issue(number: $issueNumber) {
-                    projectItems(first: 20) {
-                      nodes {
-                        project {
-                          id
-                          number
-                          title
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            `;
-
-            const projectData = await github.graphql(getProjectsQuery, {
-              owner,
-              repo,
-              issueNumber: ${{ inputs.issue_number }}
-            });
-
             const timestamp = new Date().toISOString();
             const newBody = `🔄 *This is a duplicate of #${originalIssue.number}*
             
@@ -106,48 +81,20 @@ jobs:
               labels: originalIssue.labels.map(label => label.name),
               assignees: originalIssue.assignees.map(assignee => assignee.login)
             });
-
-            // Add to projects if any
-            const projects = projectData.repository.issue.projectItems.nodes;
-            if (projects.length > 0) {
-              const addToProjectMutation = `
-                mutation($projectId: ID!, $contentId: ID!) {
-                  addProjectV2ItemById(input: {projectId: $projectId, contentId: $contentId}) {
-                    item {
-                      id
-                    }
-                  }
-                }
-              `;
-
-              for (const projectItem of projects) {
-                try {
-                  await github.graphql(addToProjectMutation, {
-                    projectId: projectItem.project.id,
-                    contentId: newIssue.data.node_id
-                  });
-                  console.log(`Added to project: ${projectItem.project.title}`);
-                } catch (error) {
-                  console.error(`Failed to add to project ${projectItem.project.title}:`, error);
-                }
-              }
-            }
             
             // Add reference comments
             await github.rest.issues.createComment({
               owner,
               repo,
               issue_number: originalIssue.number,
-              body: `✅ Issue duplicated to #${newIssue.data.number} by @${context.actor}
-              ${projects.length > 0 ? `\nProjects copied: ${projects.map(p => p.project.title).join(', ')}` : ''}`
+              body: `✅ Issue duplicated to #${newIssue.data.number} by @${context.actor}`
             });
             
             await github.rest.issues.createComment({
               owner,
               repo,
               issue_number: newIssue.data.number,
-              body: `This issue was created via \`/duplicate\` command by @${context.actor}
-              ${projects.length > 0 ? `\nAdded to projects: ${projects.map(p => p.project.title).join(', ')}` : ''}`
+              body: `This issue was created via \`/duplicate\` command by @${context.actor}`
             });
 
       - name: Comment if user lacks permission
