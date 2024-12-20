@@ -33,7 +33,7 @@ jobs:
         id: check_permissions
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.PROJECT_PAT }}
+          github-token: ${{ secrets.PROJECT_TOKEN }}
           script: |
             const [owner, repo] = context.payload.repository.split('/');
             const { data: permissions } = await github.rest.repos.getCollaboratorPermissionLevel({
