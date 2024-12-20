@@ -1,8 +1,5 @@
 name: Reusable Issue Duplication Workflow
 
-# This workflow is meant to be stored in .github repository
-# Path: .github/workflows/duplicate-issue.yml
-
 on:
   workflow_call:
     inputs:
@@ -35,10 +32,10 @@ jobs:
         with:
           github-token: ${{ secrets.PROJECT_TOKEN }}
           script: |
-            const [owner, repo] = context.payload.repository.split('/');
+            const [owner, repo] = '${{ inputs.repository }}'.split('/');
             const { data: permissions } = await github.rest.repos.getCollaboratorPermissionLevel({
-              owner: owner,
-              repo: repo,
+              owner,
+              repo,
               username: context.actor
             }).catch(e => ({ data: { permission: 'none' } }));
             
@@ -50,15 +47,15 @@ jobs:
         if: steps.check_permissions.outputs.result == 'true'
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.PROJECT_PAT }}
+          github-token: ${{ secrets.PROJECT_TOKEN }}
           script: |
-            const [owner, repo] = context.payload.repository.split('/');
+            const [owner, repo] = '${{ inputs.repository }}'.split('/');
             
             // Fetch original issue details
             const { data: originalIssue } = await github.rest.issues.get({
-              owner: owner,
-              repo: repo,
-              issue_number: context.payload.issue_number
+              owner,
+              repo,
+              issue_number: ${{ inputs.issue_number }}
             });
 
             // Get project information using GraphQL
@@ -81,9 +78,9 @@ jobs:
             `;
 
             const projectData = await github.graphql(getProjectsQuery, {
-              owner: owner,
-              repo: repo,
-              issueNumber: context.payload.issue_number
+              owner,
+              repo,
+              issueNumber: ${{ inputs.issue_number }}
             });
 
             const timestamp = new Date().toISOString();
@@ -102,8 +99,8 @@ jobs:
             
             // Create duplicate issue
             const newIssue = await github.rest.issues.create({
-              owner: owner,
-              repo: repo,
+              owner,
+              repo,
               title: `[Duplicate] ${originalIssue.title}`,
               body: newBody,
               labels: originalIssue.labels.map(label => label.name),
@@ -138,16 +135,16 @@ jobs:
             
             // Add reference comments
             await github.rest.issues.createComment({
-              owner: owner,
-              repo: repo,
+              owner,
+              repo,
               issue_number: originalIssue.number,
               body: `✅ Issue duplicated to #${newIssue.data.number} by @${context.actor}
               ${projects.length > 0 ? `\nProjects copied: ${projects.map(p => p.project.title).join(', ')}` : ''}`
             });
             
             await github.rest.issues.createComment({
-              owner: owner,
-              repo: repo,
+              owner,
+              repo,
               issue_number: newIssue.data.number,
               body: `This issue was created via \`/duplicate\` command by @${context.actor}
               ${projects.length > 0 ? `\nAdded to projects: ${projects.map(p => p.project.title).join(', ')}` : ''}`
@@ -157,12 +154,12 @@ jobs:
         if: steps.check_permissions.outputs.result != 'true'
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.PROJECT_PAT }}
+          github-token: ${{ secrets.PROJECT_TOKEN }}
           script: |
-            const [owner, repo] = context.payload.repository.split('/');
+            const [owner, repo] = '${{ inputs.repository }}'.split('/');
             await github.rest.issues.createComment({
-              owner: owner,
-              repo: repo,
-              issue_number: context.payload.issue_number,
+              owner,
+              repo,
+              issue_number: ${{ inputs.issue_number }},
               body: `⚠️ @${context.actor} - You don't have permission to duplicate issues. Please contact a repository maintainer.`
             });
