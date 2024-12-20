@@ -24,7 +24,6 @@ jobs:
     permissions:
       issues: write
       contents: read
-      projects: write
     
     steps:
       - name: Check comment author permissions
@@ -52,38 +51,6 @@ jobs:
           script: |
             const [owner, repo] = '${{ inputs.repository }}'.split('/');
             
-            // Get projects from original issue
-            const getProjectQuery = `
-              query($owner: String!, $repo: String!, $issueNumber: Int!) {
-                repository(owner: $owner, name: $repo) {
-                  issue(number: $issueNumber) {
-                    projectItems(first: 20) {
-                      nodes {
-                        project {
-                          id
-                          number
-                          title
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            `;
-
-            let projectItems = [];
-            try {
-              const projectData = await github.graphql(getProjectQuery, {
-                owner,
-                repo,
-                issueNumber: ${{ inputs.issue_number }}
-              });
-              projectItems = projectData.repository.issue.projectItems.nodes;
-              console.log('Found projects:', projectItems.map(p => p.project.title));
-            } catch (error) {
-              console.log('Error fetching projects:', error);
-            }
-
             // Fetch original issue details
             const { data: originalIssue } = await github.rest.issues.get({
               owner,
@@ -115,9 +82,8 @@ jobs:
               assignees: originalIssue.assignees.map(assignee => assignee.login)
             });
 
-            // Add to projects if any found
-            let addedProjects = [];
-            if (projectItems.length > 0) {
+            try {
+              // Try to add to project using project_id
               const addToProjectMutation = `
                 mutation($projectId: ID!, $contentId: ID!) {
                   addProjectV2ItemById(input: {projectId: $projectId, contentId: $contentId}) {
@@ -128,37 +94,31 @@ jobs:
                 }
               `;
 
-              for (const item of projectItems) {
-                try {
-                  await github.graphql(addToProjectMutation, {
-                    projectId: item.project.id,
-                    contentId: newIssue.data.node_id
-                  });
-                  addedProjects.push(item.project.title);
-                  console.log(`Added to project: ${item.project.title}`);
-                } catch (error) {
-                  console.error(`Failed to add to project ${item.project.title}:`, error);
+              await github.graphql(addToProjectMutation, {
+                projectId: '${{ secrets.PROJECT_ID }}',
+                contentId: newIssue.data.node_id,
+                headers: {
+                  authorization: `token ${{ secrets.PROJECT_TOKEN }}`
                 }
-              }
+              });
+              console.log('Added to project successfully');
+            } catch (error) {
+              console.error('Failed to add to project:', error);
             }
-
+            
             // Add reference comments
-            const projectInfo = addedProjects.length > 0 
-              ? `\nAdded to projects: ${addedProjects.join(', ')}` 
-              : '';
-
             await github.rest.issues.createComment({
               owner,
               repo,
               issue_number: originalIssue.number,
-              body: `✅ Issue duplicated to #${newIssue.data.number} by GitHub Actions${projectInfo}`
+              body: `✅ Issue duplicated to #${newIssue.data.number} by GitHub Actions`
             });
             
             await github.rest.issues.createComment({
               owner,
               repo,
               issue_number: newIssue.data.number,
-              body: `This issue was duplicated using command by GitHub Actions${projectInfo}`
+              body: `This issue was duplicated using command by GitHub Actions`
             });
 
       - name: Comment if user lacks permission
