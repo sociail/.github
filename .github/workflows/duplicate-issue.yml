@@ -94,7 +94,7 @@ jobs:
               owner,
               repo,
               issue_number: newIssue.data.number,
-              body: `This issue was created via \`/duplicate\` command by @${context.actor}`
+              body: `This issue was duplicated using command by @${context.actor}`
             });
 
       - name: Comment if user lacks permission
