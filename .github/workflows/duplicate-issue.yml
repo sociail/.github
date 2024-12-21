@@ -95,29 +95,23 @@ jobs:
                 }
               `;
             
-              // Create Octokit instance
-              const octokit = new github.GitHub(process.env.ORG_TOKEN);
-              
-              await octokit.graphql(addToProjectMutation, {
+              // Use github.graphql directly with authentication
+              await github.graphql(addToProjectMutation, {
                 projectId: '${{ secrets.PROJECT_ID }}',
                 contentId: newIssue.data.node_id,
                 headers: {
-                  authorization: `token ${{ secrets.ORG_TOKEN }}`
+                  Authorization: `token ${{ secrets.GITHUB_TOKEN }}`  // Using GITHUB_TOKEN instead
                 }
               });
               
               console.log('Added to project successfully');
             } catch (error) {
               console.error('Failed to add to project:', error);
-              // Add debug logging
-              if (error.request) {
-                console.log('Request details:', {
-                  url: error.request.url,
-                  method: error.request.method,
-                  headers: error.request.headers
-                });
-              }
+              // Debug info
+              console.log('Using GITHUB_TOKEN:', !!process.env.GITHUB_TOKEN);
+              console.log('Project ID:', process.env.PROJECT_ID);
             }
+         
             // Add reference comments
             await github.rest.issues.createComment({
               owner,
