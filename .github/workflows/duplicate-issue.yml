@@ -94,18 +94,20 @@ jobs:
               `;
               
               await github.graphql(addToProjectMutation, {
-                projectId: process.env.PROJECT_ID,
+                projectId: '${{ secrets.PROJECT_ID }}',  // Use the secret directly here
                 contentId: newIssue.data.node_id,
                 headers: {
-                  authorization: `Bearer ${process.env.PROJECT_TOKEN}`  // Using your existing PROJECT_TOKEN
+                  authorization: `Bearer ${{ secrets.PROJECT_TOKEN }}`  // Use the secret directly here
                 }
               });
               
               console.log('Added to project successfully');
             } catch (error) {
               console.error('Failed to add to project:', error);
+              // Log the projectId to debug
+              console.log('ProjectId:', '${{ secrets.PROJECT_ID }}');
             }
-            
+                        
             // Add reference comments
             await github.rest.issues.createComment({
               owner,
