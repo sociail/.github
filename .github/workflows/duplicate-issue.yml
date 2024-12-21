@@ -96,16 +96,22 @@ jobs:
               `;
               
               await github.graphql(addToProjectMutation, {
-                projectId: process.env.PROJECT_ID,
+                projectId: '${{ secrets.PROJECT_ID }}',  // Direct reference to the secret
                 contentId: newIssue.data.node_id,
                 headers: {
-                  authorization: `Bearer ${process.env.ORG_TOKEN}`
+                  authorization: `Bearer ${{ secrets.ORG_TOKEN }}`  // Direct reference to the token
                 }
               });
               
               console.log('Added to project successfully');
+              // Add debug logging
+              console.log('Project ID used:', '${{ secrets.PROJECT_ID }}');
             } catch (error) {
               console.error('Failed to add to project:', error);
+              // Add more detailed error logging
+              if (error.request) {
+                console.log('Request variables:', error.request.variables);
+              }
             }
                         
             // Add reference comments
