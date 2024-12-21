@@ -94,28 +94,25 @@ jobs:
                   }
                 }
               `;
-            
-              const token = process.env.ORG_TOKEN;
-              const projectId = process.env.PROJECT_ID;
               
-              console.log('Token available:', !!token);
+              // Access inputs directly rather than through environment
+              const projectId = core.getInput('project_id');
+              
               console.log('Project ID available:', !!projectId);
               
               const result = await github.graphql(addToProjectMutation, {
                 projectId: projectId,
-                contentId: newIssue.data.node_id,
-                headers: {
-                  authorization: `Bearer ${token}`
-                }
+                contentId: newIssue.data.node_id
               });
               
               console.log('Added to project successfully');
               console.log('Result:', result);
             } catch (error) {
               console.error('Failed to add to project:', error);
-              console.log('Environment variables:', {
-                hasToken: !!process.env.ORG_TOKEN,
-                hasProjectId: !!process.env.PROJECT_ID
+              // Log more details about what we have
+              console.log('Available inputs:', {
+                projectId: core.getInput('project_id'),
+                hasToken: !!github.token
               });
             }
          
