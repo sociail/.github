@@ -13,6 +13,8 @@ on:
         required: true
         type: number
     secrets:
+      ORG_TOKEN:
+        required: true
       PROJECT_TOKEN:
         required: true
       PROJECT_ID:
