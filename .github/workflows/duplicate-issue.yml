@@ -95,21 +95,28 @@ jobs:
                 }
               `;
             
-              // Use github.graphql directly with authentication
-              await github.graphql(addToProjectMutation, {
-                projectId: '${{ secrets.PROJECT_ID }}',
+              const token = process.env.ORG_TOKEN;
+              const projectId = process.env.PROJECT_ID;
+              
+              console.log('Token available:', !!token);
+              console.log('Project ID available:', !!projectId);
+              
+              const result = await github.graphql(addToProjectMutation, {
+                projectId: projectId,
                 contentId: newIssue.data.node_id,
                 headers: {
-                  Authorization: `token ${{ secrets.GITHUB_TOKEN }}`  // Using GITHUB_TOKEN instead
+                  authorization: `Bearer ${token}`
                 }
               });
               
               console.log('Added to project successfully');
+              console.log('Result:', result);
             } catch (error) {
               console.error('Failed to add to project:', error);
-              // Debug info
-              console.log('Using GITHUB_TOKEN:', !!process.env.GITHUB_TOKEN);
-              console.log('Project ID:', process.env.PROJECT_ID);
+              console.log('Environment variables:', {
+                hasToken: !!process.env.ORG_TOKEN,
+                hasProjectId: !!process.env.PROJECT_ID
+              });
             }
          
             // Add reference comments
