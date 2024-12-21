@@ -95,17 +95,23 @@ jobs:
                 }
               `;
               
+              // Create headers object with proper Authorization
+              const headers = {
+                Authorization: `Bearer ${{ secrets.ORG_TOKEN }}`,
+                Accept: 'application/vnd.github.v3+json'
+              };
+            
               await github.graphql(addToProjectMutation, {
                 projectId: '${{ secrets.PROJECT_ID }}',
                 contentId: newIssue.data.node_id,
-                headers: {
-                  authorization: `token ${{ secrets.ORG_TOKEN }}`  // Note: using 'token' prefix for Classic PAT
-                }
+                headers: headers
               });
               
               console.log('Added to project successfully');
             } catch (error) {
               console.error('Failed to add to project:', error);
+              // Add debugging info
+              console.log('Headers used:', error.request?.headers);
             }
                         
             // Add reference comments
