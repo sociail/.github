@@ -83,7 +83,6 @@ jobs:
             });
 
             try {
-              // Try to add to project using project_id
               const addToProjectMutation = `
                 mutation($projectId: ID!, $contentId: ID!) {
                   addProjectV2ItemById(input: {projectId: $projectId, contentId: $contentId}) {
@@ -93,14 +92,15 @@ jobs:
                   }
                 }
               `;
-
+              
               await github.graphql(addToProjectMutation, {
-                projectId: '${{ secrets.PROJECT_ID }}',
+                projectId: process.env.PROJECT_ID,
                 contentId: newIssue.data.node_id,
                 headers: {
-                  authorization: `token ${{ secrets.PROJECT_TOKEN }}`
+                  authorization: `Bearer ${process.env.PROJECT_TOKEN}`  // Using your existing PROJECT_TOKEN
                 }
               });
+              
               console.log('Added to project successfully');
             } catch (error) {
               console.error('Failed to add to project:', error);
