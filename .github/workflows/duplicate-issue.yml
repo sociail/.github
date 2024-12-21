@@ -85,22 +85,39 @@ jobs:
             });
 
             try {
-              // Using GitHub CLI to add to project
-              const result = await github.rest.projects.createCard({
-                project_id: '${{ secrets.PROJECT_ID }}',
-                content_id: newIssue.data.id,
-                content_type: 'Issue'
+              const addToProjectMutation = `
+                mutation($projectId: ID!, $contentId: ID!) {
+                  addProjectV2ItemById(input: {projectId: $projectId, contentId: $contentId}) {
+                    item {
+                      id
+                    }
+                  }
+                }
+              `;
+            
+              // Create Octokit instance
+              const octokit = new github.GitHub(process.env.ORG_TOKEN);
+              
+              await octokit.graphql(addToProjectMutation, {
+                projectId: '${{ secrets.PROJECT_ID }}',
+                contentId: newIssue.data.node_id,
+                headers: {
+                  authorization: `token ${{ secrets.ORG_TOKEN }}`
+                }
               });
               
               console.log('Added to project successfully');
             } catch (error) {
               console.error('Failed to add to project:', error);
-              // Log more details about the token
-              const octokit = github.getOctokit('${{ secrets.ORG_TOKEN }}');
-              const { data } = await octokit.rest.users.getAuthenticated();
-              console.log('Token scopes:', data.scopes);
+              // Add debug logging
+              if (error.request) {
+                console.log('Request details:', {
+                  url: error.request.url,
+                  method: error.request.method,
+                  headers: error.request.headers
+                });
+              }
             }
-                        
             // Add reference comments
             await github.rest.issues.createComment({
               owner,
