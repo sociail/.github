@@ -95,25 +95,17 @@ jobs:
                 }
               `;
               
-              // Access inputs directly rather than through environment
-              const projectId = core.getInput('project_id');
-              
-              console.log('Project ID available:', !!projectId);
-              
-              const result = await github.graphql(addToProjectMutation, {
-                projectId: projectId,
-                contentId: newIssue.data.node_id
+              await github.graphql(addToProjectMutation, {
+                projectId: '${{ secrets.PROJECT_ID }}',
+                contentId: newIssue.data.node_id,
+                headers: {
+                  authorization: `token ${{ secrets.ORG_TOKEN }}`
+                }
               });
               
               console.log('Added to project successfully');
-              console.log('Result:', result);
             } catch (error) {
               console.error('Failed to add to project:', error);
-              // Log more details about what we have
-              console.log('Available inputs:', {
-                projectId: core.getInput('project_id'),
-                hasToken: !!github.token
-              });
             }
          
             // Add reference comments
