@@ -14,7 +14,7 @@
 
 > We invite you to check out **[Sociail Website](https://www.sociail.com)**. 🚀<br>
 > If you are **new** to our team, please **[start onboarding here](https://github.com/sociail/docs/wiki/onboarding)**. 🐣<br>
-> If you are interested in joining the Sociail Team, please email hiring@sociail.com 🙌<br>
+> If you are interested in joining the Sociail Team, please email **hiring@sociail.com** 🙌<br>
 
 ## Join Our Team  
 
