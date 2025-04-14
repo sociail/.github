@@ -4,7 +4,9 @@
 
 
 
-# [Sociail](https://www.sociail.com) Connect, Collaborate, Create with AI.
+# [Sociail](https://www.sociail.com) AI-Powered Collaboration.
+
+### The collaboration platform that scales from solo to enterprise.<br><br>
 
 <img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95">
 <br>
@@ -99,25 +101,10 @@ Sociail transforms AI usage by integrating it into a collaborative chat platform
 | Community-driven | ✅ | ⚠️ (Limited) | ❌ |
 
 
-**Release Timeline:**
-- ✅ February 2024: 2.0 Internal Team Release
-- ✅ April 2024: 2.0 Founding Team Release
-- 🚀 September 2024: 2.0 Limited Beta Release
-- 🎯 Fall 2024: 2.0 Public Beta Release
-- 🌟 Early 2025: Public Launch
-
-
-## What does the `Pre-Public Beta` look like? 😍
-Sociail `Pre-Public Beta` already offers a cutting-edge human-to-human chat platform with integrated access to multiple AIs. Powered by the `Sociail AI Engine`, users can enjoy exceptional shared AI experiences, enhancing collaboration and communication. **Public Beta coming Fall 2024**.
-
-<img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/e9571ad9-2e1d-4a09-8222-9ec979867b4b">
-<br>
-<br>
-
 **Let's build the future of human and AI collaboration together! 💪✨**
 
 
 
 <hr>
-© 2024 Sociail, Inc. All rights reserved.<br>
+© 2025 Sociail, Inc. All rights reserved.<br>
 Unauthorized copying, modification, distribution, or use of this software is strictly prohibited.
