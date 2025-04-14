@@ -2,13 +2,11 @@
 <br>
 <br>
 
-
-
 # [Sociail](https://www.sociail.com) AI-Powered Collaboration.
 
 ### The collaboration platform that scales from solo to enterprise.<br><br>
 
-<img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/0a95c883-d95e-46bf-b750-c78d67ee0b95">
+<img width="100%" alt="Untitled" src="https://github.com/sociail/.github/assets/135444750/65992199-d165-42ed-bf8f-fef3baad66c2">
 <br>
 <br>
 
