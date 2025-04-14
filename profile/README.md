@@ -1,9 +1,9 @@
-> **🔗 Sociail Team Only:** 
+> **🔗 Sociail Team:** 
 > [✅ Tasks](https://github.com/orgs/sociail/projects) | 
 > [📦 Repos](https://github.com/orgs/sociail/repositories) | 
-> [📚 Wiki](https://github.com/sociail/docs/wiki) | 
+> [👋 Onboarding](https://github.com/sociail/docs/wiki/onboarding) | 
 > [💻 Localdev](https://github.com/sociail/localdev) | 
-> [👋 Onboarding](https://github.com/sociail/docs/wiki/onboarding)
+> [📚 Wiki](https://github.com/sociail/docs/wiki)
 
 <br>
 
