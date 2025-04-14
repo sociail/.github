@@ -1,15 +1,13 @@
-> **⚡️ Sociail Team Links** &nbsp;|&nbsp; <b>[`✅Tasks`](https://github.com/orgs/sociail/projects)</b> &nbsp;|&nbsp; <b>[`📦Repos`](https://github.com/orgs/sociail/repositories)</b> &nbsp;|&nbsp; <b>[`📚Wiki`](https://github.com/sociail/docs/wiki)</b> &nbsp;|&nbsp; <b>[`💻Localdev`](https://github.com/sociail/localdev)</b> &nbsp;|&nbsp; <b>[`👋Onboarding`](https://github.com/sociail/docs/wiki/onboarding)</b>
-<br>
-<br>
-
-# ⚡️ Sociail: AI-Powered Collaboration
-
-> **🔗 Quick Links:** 
+> **🔗 Sociail Team Only:** 
 > [✅ Tasks](https://github.com/orgs/sociail/projects) | 
 > [📦 Repos](https://github.com/orgs/sociail/repositories) | 
 > [📚 Wiki](https://github.com/sociail/docs/wiki) | 
 > [💻 Localdev](https://github.com/sociail/localdev) | 
 > [👋 Onboarding](https://github.com/sociail/docs/wiki/onboarding)
+
+<br>
+
+# ⚡️ Sociail: AI-Powered Collaboration
 
 ## 🚀 The collaboration platform that scales from solo to enterprise
 
