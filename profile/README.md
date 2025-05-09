@@ -1,4 +1,4 @@
-> **🔗 Sociail Team:** 
+> 🔗 Sociail Team
 > [✅ Tasks](https://github.com/orgs/sociail/projects) | 
 > [📦 Repos](https://github.com/orgs/sociail/repositories) | 
 > [👋 Onboarding](https://github.com/sociail/docs/wiki/onboarding) | 
