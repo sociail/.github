@@ -7,6 +7,8 @@
 
 <br>
 
+![Sociail GitHub organization banner](./assets/sociail-github-profile-banner.svg)
+
 # Sociail
 
 ## Think Better, Together
