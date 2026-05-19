@@ -1,22 +1,24 @@
-# **Job Description: AI/ML Engineer**
+# **Future Role Brief: AI/ML Engineer**
 
 **Company:** Sociail  
 **Location:** Remote / Hybrid  
-**Type:** Full-Time  
+**Type:** Future / Not currently open
 
 ---
 
 ## **About Sociail**
-Sociail is an innovative AI startup on a mission to reimagine collaboration through AI. We’re building a cutting-edge platform that integrates multiple AI systems into a dynamic, real-time collaborative environment. As we expand, we’re looking for an experienced **AI/ML Engineer** to lead the development and integration of advanced AI capabilities into our platform.
+Sociail is a shared AI workspace where people and room-aware AI teammates work in the same context, with visible roles, approval-aware actions, durable artifacts, and receipts for important work.
+
+We hire slowly and only when the work is real. This role brief describes the kind of AI builder we expect to need as Sociail grows through invite-led Early Access.
 
 ---
 
 ## **What You’ll Do**
 As an AI/ML Engineer at Sociail, you will:
 
-- **Develop AI Models:** Design, implement, and optimize machine learning models, with a focus on NLP, collaborative intelligence, and real-time AI integrations.
-- **Integrate Multiple AIs:** Enable seamless collaboration between various AI systems to enhance user workflows.
-- **AI Workflows:** Build intuitive, AI-assisted workflows for real-time collaboration and problem-solving.
+- **Develop AI Systems:** Design, implement, and optimize AI capabilities with a focus on room context, role-aware participation, trust boundaries, and useful follow-through.
+- **Agent Participation:** Help AI teammates work from shared context instead of isolated prompts and private histories.
+- **AI Workflows:** Build intuitive, AI-assisted workflows for shared work, review-first actions, and accountable outputs.
 - **Data Pipelines:** Create and maintain scalable data pipelines for training and deploying AI models.
 - **Optimize Performance:** Ensure models perform efficiently in production environments, balancing accuracy, latency, and resource consumption.
 - **Collaborate:** Work with the backend and frontend teams to integrate AI features into the platform.
@@ -63,9 +65,8 @@ As an AI/ML Engineer at Sociail, you will:
 
 ---
 
-## **How to Apply**
+## **Interest**
 
-Send your resume and a brief introduction to **[Insert Email]** with the subject line:  
-**AI/ML Engineer Application – [Your Name]**
+We do not have this role open right now. If Sociail's bet resonates and you have unusually strong AI systems work to show, start with the [Sociail Careers page](https://www.sociail.com/careers).
 
 Let’s reimagine collaboration together. 🚀
