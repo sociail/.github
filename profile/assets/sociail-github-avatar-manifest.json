@@ -1,0 +1,11 @@
+{
+  "assetId": "sociail-github-avatar",
+  "generatedAt": "2026-05-20T05:54:47.950Z",
+  "sourceLogo": "website/public/images/sociail-logo-with-gray-stroke.svg",
+  "dimensions": {
+    "width": 1024,
+    "height": 1024
+  },
+  "usage": "GitHub organization avatar upload asset",
+  "alt": "Sociail logo on a dark square background for the GitHub organization avatar."
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "sociail.gtm.post_card.v1",
+  "source": "iac:automation/cli/iac_cli/assets/gtm_post_renderer/public/gtm/post-generator/index.html",
+  "renderer": "iac:automation/cli/iac_cli/assets/gtm_post_renderer/scripts/generate-gtm-post.mjs",
+  "rasterRenderer": "chromium:post-generator-capPng-dom-capture",
+  "filename": "sociail-github-profile-banner-banner-1920x640.png",
+  "dimensions": {
+    "w": 1920,
+    "h": 640
+  },
+  "baseDimensions": {
+    "w": 1920,
+    "h": 640
+  },
+  "scale": 1,
+  "template": "blank",
+  "format": "banner",
+  "register": "ink",
+  "logo": "sm",
+  "version": "v4",
+  "aiHighlight": "coda",
+  "assetId": "sociail-github-profile-banner",
+  "slug": "",
+  "eyebrow": "Shared Intelligence",
+  "headline": "Shared AI Workspace",
+  "coda": "People and AI agents working from the same context.",
+  "proof": "",
+  "alt": "Sociail dark campaign card with eyebrow \"Shared Intelligence\", headline \"Shared AI Workspace\", supporting text \"People and AI agents working from the same context.\" with the Sociail logo and Think Better, Together brandline.",
+  "generatorState": {
+    "f": "banner",
+    "r": "ink",
+    "l": "sm",
+    "v": "v4",
+    "a": "coda",
+    "e": "Shared Intelligence",
+    "h": "Shared AI Workspace",
+    "c": "People and AI agents working from the same context.",
+    "scale": 1
+  },
+  "generatedAt": "2026-05-20T05:03:33.990Z"
+}

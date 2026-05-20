@@ -7,7 +7,7 @@
 
 <br>
 
-![Sociail GitHub organization banner](./assets/sociail-github-profile-banner.svg)
+![Sociail GitHub organization banner](./assets/sociail-github-profile-banner.png)
 
 # Sociail
 
